@@ -1,0 +1,90 @@
+Butnariu Bogdan-Mihai, 322CB
+1st Project IOCLA
+=======================================================================================
+The program have to implement a few commands from bash language.
+
+Struct Dir represents the structure for a directory and Struct File represents the 
+structure for a file.
+
+The mini-os will implement only structures without data, only name.
+This is done using Linked Lists.
+=======================================================================================
+initFile
+
+Simple allocation of memory for one structure of File and one field of name using 
+malloc. Then, the program verifies if the allocation was done right.
+=======================================================================================
+initDir
+
+Same here, allocation of memory for one structure of Dir and one fieldof name using 
+malloc and then tested.
+=======================================================================================
+touch
+
+This creates a File. The program search with "crawlF" in the Linked List of Files to 
+see if the name want to assign is taken. Then the program does the same thing with 
+"crawlD" in Linked List of Dir. If the name is available, the program crates a new 
+Struct File and link it with the list in 2 cases: the list doesnt have any files or the
+list has files, links the file at last position.
+=======================================================================================
+mkdir
+
+Same over here, but with a little twist. The program verifies if the name is available
+in the same 2 linked lists and then creates the Struct Dir. Same with the linking, in
+the first position if there are no directoriess or at last position.
+=======================================================================================
+ls
+
+This function does a basic crossing over the linked lists and prints the names,
+firsts for files and after for directories.
+=======================================================================================
+rm
+
+This function delete one files by name. This function divides in 3 cases:
+1st case, the list is empty, so no file to delete
+2nd case, the file is in the first position of list and the program need to change the 
+head
+3th case, the file is somewhere in list and I do a simple linking
+=======================================================================================
+rmdir
+
+This function has the same principle like rm, but when I delete the Dir, the program
+needs to delete all the files and subdirectories.
+=======================================================================================
+cd
+
+This function change the current directory in the "mini-os". The program receives the 
+address of the currentDir pointer from main and changes the address to another Struct
+Dir with the same name in "cd 'name'". If I type "cd ..", the function goes to the
+parent of the directory.
+=======================================================================================
+pwd
+
+This function returns the curent working directory name and all the path from home.
+This is a recursive function with a static char *. When it hits the HOME directory,
+the function alloc memory for the string and concatenate the result.
+=======================================================================================
+freeMem
+
+This function clears the memory of the program. It uses the recursion to enter the last
+level in the Dir tree. Delete all the files and then come back to delete the struct
+Dir. Home is never deleted.
+=======================================================================================
+stop
+
+Stop its pretty simple. exit(0) :)
+=======================================================================================
+tree
+
+This function prints a tree of directories and files. First, it prints the directories
+and then the file using recursion. When it hits a directories, the recursion hits all 
+the subdirectories.
+=======================================================================================
+mv
+
+This is a complex function because there a lot of verification. The program has 2 
+arguments, newname and oldname. The program searchs for the oldname in files, if the 
+program find it, it starts looking for the newname if exists in files and directories.
+If all is allright, the program call rm and touch functions. For directories the
+program makes new linking through List, remove the old Directory and add a new one.
+=======================================================================================
